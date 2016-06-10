@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta content="IE=edge" http-equiv="X-UA-Compatible">
+      <meta content="width=device-width, initial-scale=1" name="viewport">
+      <title>
+          Visitor Details
+      </title>
+    </head>
+    <body>
+        <div id="visitordetails">
+        </div>
+        <script src="client.min.js">
+        </script>
+        <script>
+            // Create a new ClientJS object
+            var client = new ClientJS();
+            var visitor = {
+            fingerprint: client.getFingerprint(),
+            timezone:client.getTimeZone(),
+            language:client.getLanguage(),
+            system: client.getBrowserData(),
+            screen:{
+              colorDepth:client.getColorDepth(),
+              resolution:client.getCurrentResolution(),
+              availableResolution:client.getAvailableResolution(),
+              deviceXDPI:client.getDeviceXDPI()||"",
+              deviceYDPI:client.getDeviceYDPI()||""
+            },
+            plugins:client.getPlugins(),
+            extentions:{
+              java:client.isJava(),
+              javaVersion:client.getJavaVersion(),
+              boolFlash:client.isFlash(),
+              flashVersion:client.getFlashVersion(),
+              boolsilverlight:client.isSilverlight(),
+              silverlightVersion:client.getSilverlightVersion(),
+              canvas:client.isCanvas(),
+            },
+            storage:{
+              localStorage:client.isLocalStorage(),
+              sessionStorage:client.isSessionStorage(),
+              cookies:client.isCookie(),
+            },
+            systemLanguage:client.getSystemLanguage(),
+            }
+            //OUTPUT
+            console.log(JSON.stringify(visitor,null,4));
+            document.getElementById('visitordetails').innerHTML = '<div class="" style="text-align:left"><pre>'+JSON.stringify(visitor,null,4)+'</pre></div>'
+        </script>
+    </body>
+</html>
